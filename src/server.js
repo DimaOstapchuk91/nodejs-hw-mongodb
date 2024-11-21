@@ -2,9 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import { env } from './utils/env.js';
-import { getAllContacts, getContactById } from './services/contacts.js';
+// import { getAllContacts, getContactById } from './services/contacts.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import contactsRouter from './routers/contacts.js';
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -12,6 +13,8 @@ export const setupServer = () => {
   const app = express();
 
   app.use(express.json());
+
+  // const jsonParser = express.json();
 
   app.use(cors());
 
@@ -29,9 +32,9 @@ export const setupServer = () => {
     });
   });
 
-  app.get();
+  app.use(contactsRouter);
 
-  app.get();
+  // app.get();
 
   app.use('*', notFoundHandler);
 
