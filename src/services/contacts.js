@@ -32,3 +32,7 @@ export const updateContact = async (contactId, contact, options = {}) => {
     isNew: Boolean(rawResult?.lastErrorObject.upserted),
   };
 };
+
+export const deleteContact = (contactId) => {
+  return ContactsCollection.findByIdAndDelete(contactId);
+};

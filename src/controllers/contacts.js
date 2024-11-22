@@ -1,5 +1,6 @@
 import {
   createContact,
+  deleteContact,
   getAllContacts,
   getContactById,
   updateContact,
@@ -62,7 +63,6 @@ export const updateContactController = async (req, res, next) => {
   };
 
   const result = await updateContact(contactId, contact);
-  console.log(result.contact);
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
@@ -74,4 +74,14 @@ export const updateContactController = async (req, res, next) => {
     message: 'Successfully patched a contact!',
     data: result.contact,
   });
+};
+
+export const deleteContactController = async (req, res) => {
+  const { contactId } = req.params;
+
+  const result = await deleteContact(contactId);
+
+  if (!result) throw createHttpError(404, 'Contact not found');
+
+  res.status(204).end();
 };

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import express from 'express';
 import {
   createContactController,
+  deleteContactController,
   gerContactByIdController,
   getContactsController,
   updateContactController,
@@ -23,5 +24,7 @@ router.patch(
   jsonParser,
   ctrlWrapper(updateContactController),
 );
+
+router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
 
 export default router;
