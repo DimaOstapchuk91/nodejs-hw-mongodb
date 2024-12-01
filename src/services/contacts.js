@@ -6,7 +6,7 @@ export const getAllContacts = async (
   page = 1,
   perPage = 10,
   sortBy = 'name',
-  sortOrder = SORT_ORDER.DESK,
+  sortOrder = SORT_ORDER.ASC,
 ) => {
   const skip = page > 0 ? (page - 1) * perPage : 0;
 

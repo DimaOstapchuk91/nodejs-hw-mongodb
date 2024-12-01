@@ -22,7 +22,7 @@ const parseSortOrder = (sortOrder) => {
 
   if (isKnownOrder) sortOrder;
 
-  return SORT_ORDER.DESK;
+  return SORT_ORDER.ASC;
 };
 
 export const parseSortParams = (query) => {
