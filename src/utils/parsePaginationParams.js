@@ -3,7 +3,6 @@ const parsePageValue = (value, defaultValue) => {
 
   const parsedValue = parseInt(value, 10);
 
-  console.log(typeof parsedValue);
   if (Number.isNaN(parsedValue)) return defaultValue;
 
   return parsedValue;
