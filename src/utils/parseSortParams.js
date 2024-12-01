@@ -12,15 +12,15 @@ const parseSortBy = (sortBy) => {
     'updatedAt',
   ];
 
-  if (keysOfContact.includes(sortBy)) sortBy;
+  if (keysOfContact.includes(sortBy)) return sortBy;
 
   return 'name';
 };
 
 const parseSortOrder = (sortOrder) => {
-  const isKnownOrder = [SORT_ORDER.ASC, SORT_ORDER.DESK].includes(sortOrder);
+  const isKnownOrder = [SORT_ORDER.ASC, SORT_ORDER.DESC].includes(sortOrder);
 
-  if (isKnownOrder) sortOrder;
+  if (isKnownOrder) return sortOrder;
 
   return SORT_ORDER.ASC;
 };

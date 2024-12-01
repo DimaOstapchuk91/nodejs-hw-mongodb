@@ -25,16 +25,16 @@ router.get('/:contactId', isValidId, ctrlWrapper(gerContactByIdController));
 
 router.post(
   '/',
-  validateBody(createContactSchema),
   jsonParser,
+  validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
 
 router.patch(
   '/:contactId',
   isValidId,
-  validateBody(updateContactSchema),
   jsonParser,
+  validateBody(updateContactSchema),
   ctrlWrapper(updateContactController),
 );
 

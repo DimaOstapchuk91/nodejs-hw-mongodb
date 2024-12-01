@@ -1,16 +1,24 @@
-import { SORT_ORDER } from '../constans/constans.js';
+// import { SORT_ORDER } from '../constans/constans.js';
 import { ContactsCollection } from '../db/models/contact.js';
 import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 
-export const getAllContacts = async (
-  page = 1,
-  perPage = 10,
-  sortBy = 'name',
-  sortOrder = SORT_ORDER.ASC,
-) => {
+export const getAllContacts = async ({
+  page,
+  perPage,
+  sortBy,
+  sortOrder,
+  filter = {},
+}) => {
   const skip = page > 0 ? (page - 1) * perPage : 0;
 
   const contactsQuery = ContactsCollection.find();
+
+  if (filter.contactType) {
+    contactsQuery.where('contactType').equals(filter.contactType);
+  }
+  if (typeof filter.isFavourite === 'boolean') {
+    contactsQuery.where('isFavourite').equals(filter.isFavourite);
+  }
 
   const [totalContacts, contacts] = await Promise.all([
     ContactsCollection.find().merge(contactsQuery).countDocuments(),
