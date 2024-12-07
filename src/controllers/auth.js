@@ -65,8 +65,12 @@ export const refreshUserSessionController = async (req, res) => {
 };
 
 export const logoutUserController = async (req, res) => {
-  if (!req.cookies.sessionId) throw createHttpError(404, 'Session not found');
-  await logoutUser(req.cookies.sessionId);
+  const { sessionId, refreshToken } = req.cookies;
+
+  if (!sessionId && !refreshToken)
+    throw createHttpError(404, 'Session not found');
+
+  await logoutUser(sessionId, refreshToken);
 
   res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
