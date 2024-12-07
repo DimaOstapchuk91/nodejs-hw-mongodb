@@ -15,16 +15,24 @@ import {
 import { validateBody } from '../middlewares/validateBody.js';
 import { isValidId } from '../middlewares/isValidId.js';
 import { authenticate } from '../middlewares/authenticate.js';
+import { checkRoles } from '../middlewares/checkRoles.js';
+import { ROLES } from '../constans/constans.js';
 
 const jsonParser = express.json();
 
 const router = Router();
 
-router.get('/', authenticate, ctrlWrapper(getContactsController));
+router.get(
+  '/',
+  authenticate,
+  checkRoles(ROLES.ADMIN, ROLES.USER),
+  ctrlWrapper(getContactsController),
+);
 
 router.get(
   '/:contactId',
   authenticate,
+  checkRoles(ROLES.ADMIN, ROLES.USER),
   isValidId,
   ctrlWrapper(gerContactByIdController),
 );
@@ -32,6 +40,7 @@ router.get(
 router.post(
   '/',
   authenticate,
+  checkRoles(ROLES.ADMIN, ROLES.USER),
   jsonParser,
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
@@ -40,6 +49,7 @@ router.post(
 router.patch(
   '/:contactId',
   authenticate,
+  checkRoles(ROLES.ADMIN, ROLES.USER),
   isValidId,
   jsonParser,
   validateBody(updateContactSchema),
@@ -49,6 +59,7 @@ router.patch(
 router.delete(
   '/:contactId',
   authenticate,
+  checkRoles(ROLES.ADMIN, ROLES.USER),
   isValidId,
   ctrlWrapper(deleteContactController),
 );
