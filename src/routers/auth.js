@@ -7,12 +7,14 @@ import {
   refreshUserSessionController,
   registrationUserController,
   requestResetEmailController,
+  resetUserPaswordController,
 } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
   loginSchema,
   registrationSchema,
   requstResetEmailSchema,
+  resetPasswordSchema,
 } from '../validation/auth.js';
 
 const jsonParser = express.json();
@@ -42,6 +44,13 @@ router.post(
   jsonParser,
   validateBody(requstResetEmailSchema),
   ctrlWrapper(requestResetEmailController),
+);
+
+router.post(
+  '/reset-pwd',
+  jsonParser,
+  validateBody(resetPasswordSchema),
+  ctrlWrapper(resetUserPaswordController),
 );
 
 export default router;

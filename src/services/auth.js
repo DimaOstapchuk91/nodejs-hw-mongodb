@@ -16,6 +16,8 @@ import * as fs from 'fs/promises';
 import handlebars from 'handlebars';
 import { sendEmail } from '../utils/sendEmail.js';
 
+//
+
 export const registrationUser = async (payload) => {
   const user = await User.findOne({ email: payload.email });
 
@@ -25,6 +27,8 @@ export const registrationUser = async (payload) => {
 
   return await User.create({ ...payload, password: encryptedPassword });
 };
+
+//
 
 export const loginUser = async (payload) => {
   const user = await User.findOne({ email: payload.email });
@@ -68,6 +72,8 @@ const createSession = () => {
     refreshTokenValidUntil: new Date(Date.now() + THIRTY_DAY),
   };
 };
+
+//
 
 export const refreshUserSession = async ({ sessionId, refreshToken }) => {
   const session = await Session.findOne({
@@ -124,4 +130,30 @@ export const requestResetEmail = async (email) => {
     subject: 'Reset you password',
     html,
   });
+};
+
+export const resetPassword = async (payload) => {
+  let entries;
+
+  try {
+    entries = jwt.verify(payload.token, env('JWT_SECRET'));
+  } catch (error) {
+    if (error instanceof Error)
+      throw createHttpError(401, 'Token is expired or invalid.');
+    throw error;
+  }
+
+  const user = await User.findOne({ email: entries.email, _id: entries.sub });
+
+  if (!user) throw createHttpError(404, 'User not found');
+
+  const encryptedPass = await bcrypt.hash(payload.password, 10);
+
+  await User.updateOne({ _id: user._id }, { password: encryptedPass });
+
+  const session = await Session.findOne({ userId: user._id });
+
+  if (session) {
+    await Session.deleteOne({ userId: user._id });
+  }
 };
