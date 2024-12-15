@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import pino from 'pino-http';
+// import pino from 'pino-http';
 import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -16,13 +16,13 @@ export const setupServer = () => {
 
   app.use(cookieParser());
 
-  app.use(
-    pino({
-      transport: {
-        target: 'pino-pretty',
-      },
-    }),
-  );
+  // app.use(
+  //   pino({
+  //     transport: {
+  //       target: 'pino-pretty',
+  //     },
+  //   }),
+  // );
 
   app.get('/', (req, res) => {
     res.json({

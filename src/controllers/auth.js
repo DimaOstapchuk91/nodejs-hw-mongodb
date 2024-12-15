@@ -68,7 +68,7 @@ export const logoutUserController = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
 
   if (!sessionId && !refreshToken)
-    throw createHttpError(404, 'Session not found');
+    throw createHttpError(401, 'Session not found');
 
   await logoutUser(sessionId, refreshToken);
 
