@@ -15,7 +15,7 @@ servers:
   - url: http://localhost:3000
   - url: https://nodejs-hw-mongodb-96mv.onrender.com
 paths:
-  /students:
+  /contacts:
     get:
       $ref: ../swagger/paths/contacts/get.yaml
     post:
@@ -27,8 +27,31 @@ paths:
       $ref: ../swagger/paths/contacts/{id}/patch.yaml
     delete:
       $ref: ../swagger/paths/contacts/{id}/delete.yaml
+  /register:
+    post:
+      $ref: ../swagger/paths/auth/register.yaml
+  /login:
+    post:
+      $ref: ../swagger/paths/auth/login.yaml
+  /refresh:
+    post:
+      $ref: ../swagger/paths/auth/refresh.yaml
+  /logout:
+    post:
+      $ref: ../swagger/paths/auth/logout.yaml
+  /send-reset-email:
+    post:
+      $ref: ../swagger/paths/auth/requestResetEmail.yaml
+  /reset-pwd:
+    post:
+      $ref: ../swagger/paths/auth/resetPwd.yaml
 components:
   securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: refreshToken
     bearerAuth:
       type: http
       scheme: bearer
+      bearerFormat: JWT
