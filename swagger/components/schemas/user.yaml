@@ -1,5 +1,6 @@
 type: object
 required:
+  - _id
   - name
   - email
   - password
@@ -16,6 +17,10 @@ properties:
     description: 'User email'
     type: string
     example: trembo@mail.com
+  password:
+    description: 'Hashed user password stored in the database'
+    type: string
+    example: '$2b$10$ehfmT7JR9ypYhpGViQeeY.IeBX46h7r8IC5S0Xl2Q6UQ2Thn49gDS'
   role:
     description: 'User role'
     type: string
