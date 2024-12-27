@@ -39,7 +39,7 @@ requestBody:
           photo:
             description: 'Link to Contacts photo'
             type: string
-            example: https://res.cloudinary.com/dhm3gmrld/image/upload/v1734300378/aoftrtoi03rnln8udxl1.webp
+            format: binary
 responses:
   '201':
     description: Creates a student
@@ -62,6 +62,8 @@ responses:
               type: object
               $ref: '../../components/schemas/contact.yaml'
   '400':
+    $ref: '../../components/responses/contacts/400.yaml'
+  '401':
     $ref: '../../components/responses/contacts/401.yaml'
   '404':
     $ref: '../../components/responses/contacts/404.yaml'

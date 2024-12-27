@@ -250,7 +250,7 @@
                   "photo": {
                     "description": "Link to Contacts photo",
                     "type": "string",
-                    "example": "https://res.cloudinary.com/dhm3gmrld/image/upload/v1734300378/aoftrtoi03rnln8udxl1.webp"
+                    "format": "binary"
                   }
                 }
               }
@@ -288,6 +288,9 @@
             }
           },
           "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
             "$ref": "#/components/responses/401"
           },
           "404": {
@@ -352,6 +355,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -422,7 +428,7 @@
                   "photo": {
                     "description": "Link to Contacts photo",
                     "type": "string",
-                    "example": "https://res.cloudinary.com/dhm3gmrld/image/upload/v1734300378/aoftrtoi03rnln8udxl1.webp"
+                    "format": "binary"
                   }
                 }
               }
@@ -459,6 +465,12 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
           "404": {
             "$ref": "#/components/responses/404"
           },
@@ -494,6 +506,9 @@
         "responses": {
           "204": {
             "description": "Successful removal. The response does not contain a body."
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -1036,6 +1051,43 @@
       }
     },
     "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 400
+                },
+                "message": {
+                  "type": "string",
+                  "example": "BadRequest"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Request body is missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "401": {
         "description": "Unauthorized error",
         "content": {
