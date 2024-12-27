@@ -248,7 +248,7 @@
                     ]
                   },
                   "photo": {
-                    "description": "Link to Contacts photo",
+                    "description": "Upload to Contacts photo",
                     "type": "string",
                     "format": "binary"
                   }
@@ -426,7 +426,7 @@
                     ]
                   },
                   "photo": {
-                    "description": "Link to Contacts photo",
+                    "description": "Upload to Contacts photo",
                     "type": "string",
                     "format": "binary"
                   }
