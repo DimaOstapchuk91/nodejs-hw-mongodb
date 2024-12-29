@@ -108,6 +108,6 @@ responses:
                   example: true
 
   '401':
-    $ref: '../../components/responses/contacts/401.yaml'
+    $ref: '../../components/responses/auth/auth-401.yaml'
   '500':
     $ref: '../../components/responses/500.yaml'

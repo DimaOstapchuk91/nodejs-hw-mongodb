@@ -187,7 +187,7 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "$ref": "#/components/responses/auth-401"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -214,8 +214,7 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "contactType",
-                  "userId"
+                  "contactType"
                 ],
                 "properties": {
                   "name": {
@@ -291,10 +290,7 @@
             "$ref": "#/components/responses/400"
           },
           "401": {
-            "$ref": "#/components/responses/401"
-          },
-          "404": {
-            "$ref": "#/components/responses/404"
+            "$ref": "#/components/responses/auth-401"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -357,7 +353,7 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "$ref": "#/components/responses/auth-401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -469,7 +465,7 @@
             "$ref": "#/components/responses/400"
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "$ref": "#/components/responses/auth-401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -508,7 +504,7 @@
             "description": "Successful removal. The response does not contain a body."
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "$ref": "#/components/responses/auth-401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -670,7 +666,7 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/auth-401"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -731,10 +727,10 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/auth-401"
           },
           "404": {
-            "$ref": "#/components/responses/404-2"
+            "$ref": "#/components/responses/auth-404"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -763,10 +759,10 @@
             "description": "Successful Logout. Response does not contain a body."
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/auth-401"
           },
           "404": {
-            "$ref": "#/components/responses/404-2"
+            "$ref": "#/components/responses/auth-404"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -834,7 +830,7 @@
             }
           },
           "404": {
-            "$ref": "#/components/responses/404-2"
+            "$ref": "#/components/responses/auth-404"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -908,7 +904,7 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/auth-401"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -1085,43 +1081,6 @@
           }
         }
       },
-      "401": {
-        "description": "Unauthorized error",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "example": 401
-                },
-                "message": {
-                  "type": "string",
-                  "example": "UnauthorizedError"
-                },
-                "data": {
-                  "type": "object",
-                  "required": [
-                    "message"
-                  ],
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Session not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "404": {
         "description": "NotFoundError",
         "content": {
@@ -1233,7 +1192,7 @@
           }
         }
       },
-      "401-2": {
+      "auth-401": {
         "description": "Unauthorized error",
         "content": {
           "application/json": {
@@ -1270,7 +1229,7 @@
           }
         }
       },
-      "404-2": {
+      "auth-404": {
         "description": "NotFound error",
         "content": {
           "application/json": {

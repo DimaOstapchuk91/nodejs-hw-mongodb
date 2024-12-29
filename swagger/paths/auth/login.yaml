@@ -47,6 +47,6 @@ responses:
                   description: Access token
                   example: 'TDn5k6dfU2zkjG4W6WW0NQJ2Vgl8QkGORZcGIK'
   '401':
-    $ref: '../../components/responses/auth/401.yaml'
+    $ref: '../../components/responses/auth/auth-401.yaml'
   '500':
     $ref: '../../components/responses/500.yaml'

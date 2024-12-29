@@ -39,6 +39,6 @@ responses:
               type: object
               description: empty object
   '404':
-    $ref: '../../components/responses/auth/404.yaml'
+    $ref: '../../components/responses/auth/auth-404.yaml'
   '500':
     $ref: '../../components/responses/500.yaml'
