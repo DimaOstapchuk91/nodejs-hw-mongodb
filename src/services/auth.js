@@ -16,8 +16,6 @@ import * as fs from 'fs/promises';
 import handlebars from 'handlebars';
 import { sendEmail } from '../utils/sendEmail.js';
 
-//
-
 export const registrationUser = async (payload) => {
   const user = await User.findOne({ email: payload.email });
 
@@ -27,8 +25,6 @@ export const registrationUser = async (payload) => {
 
   return await User.create({ ...payload, password: encryptedPassword });
 };
-
-//
 
 export const loginUser = async (payload) => {
   const user = await User.findOne({ email: payload.email });
